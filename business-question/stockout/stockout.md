@@ -9,3 +9,14 @@ A beverage distributor wants to identify products that may run out of inventory 
 
 Business Question: Write Python code using pandas to calculate the Days of Supply for each SKU and identify products where inventory will run out before the next shipment arrives.
 
+```python
+import pandas as pd
+
+df["Days_of_Supply"] = (
+    df["Current_Inventory"] / df["Avg_Daily_Sales"]
+)
+
+at_risk = df[df["Days_of_Supply"] < df["Lead_Time_Days"]]
+
+print(at_risk)
+```
