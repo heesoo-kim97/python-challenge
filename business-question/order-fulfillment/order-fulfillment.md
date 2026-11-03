@@ -44,3 +44,37 @@ data = {
 df = pd.DataFrame(data)
 
 ```
+
+Solution
+```python
+
+# Convert columns to datetime
+date_columns = ["Order_Date", "Ship_Date", "Expected_Ship_Date"]
+
+for col in date_columns:
+    df[col] = pd.to_datetime(df[col])
+
+# Calculate shipping duration
+df["Shipping_Days"] = (
+    df["Ship_Date"] - df["Order_Date"]
+).dt.days
+
+# Identify late shipments
+df["Late"] = df["Ship_Date"] > df["Expected_Ship_Date"]
+
+# Aggregate warehouse performance
+performance = df.groupby("Warehouse").agg(
+    Average_Shipping_Days=("Shipping_Days", "mean"),
+    Total_Orders=("Order_ID", "count"),
+    Late_Orders=("Late", "sum")
+)
+
+# Calculate late shipment rate
+performance["Late_Rate"] = (
+    performance["Late_Orders"] / performance["Total_Orders"] * 100
+)
+
+print(performance.sort_values("Late_Rate", ascending=False))
+
+```
+
