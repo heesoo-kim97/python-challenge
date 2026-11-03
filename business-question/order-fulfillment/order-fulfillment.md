@@ -86,6 +86,6 @@ Expected output:
 | --- | --- | --- | --- |
 | NY | 2.0 | 1 | 50% |
 |TX | 2.0 |	1 |	50% |
-LA	2.0	1	50%
+| LA | 2.0 | 1 | 50% |
 
 All three wareh0ouses have the same late shipment rate in this small sample.
