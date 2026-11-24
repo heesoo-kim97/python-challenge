@@ -36,3 +36,30 @@ data = {
 df = pd.DataFrame(data)
 ```
 
+## Solution
+
+```python
+# Calculate revenue
+df["Revenue"] = df["Units_Sold"] * df["Unit_Price"]
+
+# Calculate profit
+df["Profit"] = (
+    df["Units_Sold"] * (df["Unit_Price"] - df["Unit_Cost"])
+)
+
+# Aggregate by product
+product_performance = df.groupby("Product").agg(
+    Total_Revenue=("Revenue", "sum"),
+    Total_Profit=("Profit", "sum"),
+    Total_Units_Sold=("Units_Sold", "sum")
+)
+
+# Sort by profit
+product_performance = product_performance.sort_values(
+    "Total_Profit",
+    ascending=True
+)
+
+print(product_performance)
+```
+
