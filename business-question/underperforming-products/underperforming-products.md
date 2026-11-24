@@ -63,3 +63,13 @@ product_performance = product_performance.sort_values(
 print(product_performance)
 ```
 
+## interpretation
+
+Expected output:
+| Product |	Revenue |	Profit |	Units Sold |
+| --- | --- | --- | --- |
+| Juice |	$500 |	$200 |	250 |
+| Water |	$450 |	$270 |	450  |
+| Energy | Drink |	$540 |	$270 |	180 |
+
+Juice generates the lowest total profit at $200.
